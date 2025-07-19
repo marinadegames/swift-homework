@@ -451,12 +451,44 @@ import Foundation
 //target = 7
 //[1, 2, 3, 4, 6, 8, 9] -> 5
 //[1, 2, 7, 9] -> 2
-
-func findIndex(_ array: [Int], target: Int) -> Int {
-}
+//
+//var arr1 = [1, 2, 3, 4, 6, 8, 9];
+//var arr2 = [1, 2, 7, 9];
+//
+//func findIndex(_ array: [Int], target: Int) -> Int {
+//    for (index, item) in array.enumerated() {
+//        if (item >= target) {
+//            return index;
+//        }
+//    }
+//    
+//    return 0;
+//}
+//
+//print(findIndex(arr1, target: 7)); // 5
+//print(findIndex(arr2, target: 7)); // 2
 
 
 // ========================================================= //
+
+//23. Написать функцию которая умножает каждый элемент на индекс
+//[1, 2, 3, 4] -> [1 * 0, 2 * 1, 3 * 2, 4 * 3] -> [0, 2, 6, 12]
+
+var arr = [1, 2, 3, 4]
+
+func multiplyIndex(_ array: [Int]) -> [Int] {
+    var result: [Int] = [];
+    
+    for (index, item) in array.enumerated() {
+        result.append(item * index);
+    }
+    
+    return result;
+        
+}
+
+print(multiplyIndex(arr)); // [0, 2, 6, 12]
+
 // ========================================================= //
 // ========================================================= //
 // ========================================================= //
