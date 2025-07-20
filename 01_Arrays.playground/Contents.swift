@@ -4,21 +4,19 @@ import Foundation
 // 1. Посчитать сумму положительных чисел в массиве
 //[1,-4,7,12] -> 1 + 7 + 12 = 20
 
-//var arr = [1,-4,7,12];
-//
-//func sumOfPositives(_ array: [Int]) -> Int {
-//    var result = 0;
-//
-//    for item in array {
-//        if (item >= 0) {
-//            result += item
-//        }
-//    }
-//    
-//    return result;
-//}
-//
-//print(sumOfPositives(arr)); // 20
+func sumOfPositives(_ array: [Int]) -> Int {
+    var result = 0;
+
+    for item in array {
+        if (item >= 0) {
+            result += item
+        }
+    }
+    
+    return result;
+}
+
+print(sumOfPositives([1,-4,7,12])); // 20
 
 // ========================================================= //
 
