@@ -473,26 +473,627 @@ import Foundation
 
 //23. Написать функцию которая умножает каждый элемент на индекс
 //[1, 2, 3, 4] -> [1 * 0, 2 * 1, 3 * 2, 4 * 3] -> [0, 2, 6, 12]
+//
+//var arr = [1, 2, 3, 4]
+////
+//func multiplyIndex(_ array: [Int]) -> [Int] {
+//    var result: [Int] = [];
+//    
+//    for (index, item) in array.enumerated() {
+//        result.append(item * index);
+//    }
+//    
+//    return result;
+//        
+//}
+//
+//print(multiplyIndex(arr)); // [0, 2, 6, 12]
 
-var arr = [1, 2, 3, 4]
+// ========================================================= //
 
-func multiplyIndex(_ array: [Int]) -> [Int] {
-    var result: [Int] = [];
+//24. Написать функцию которая возводит каждый элемент в степень по счету
+//[10, 2, 5, 1] -> [10 ^ 1, 2 ^ 2, 5 ^ 3, 1 ^ 4] -> [10, 4, 125, 1]
+
+//var arr = [10, 2, 5, 1];
+//
+//func multiplyPower(_ array: [Int]) -> [Int] {
+//    var result: [Int] = [];
+//    var counter = 1;
+//    
+//    for item in array {
+//        result.append(Int(pow(Double(item), Double(counter))));
+//        counter += 1;
+//    }
+//    
+//    return result;
+//}
+//
+//print(multiplyPower(arr)); // [10, 4, 125, 1]
+
+// ========================================================= //
+
+//25. Написать функцию которая конвертирует строку в массив Character и добавляет индекс
+//"abcd" -> ["a", "b", "c", "d"]
+
+//var str = "abcd";
+//
+//func convertToArray(_ string: String) -> Array<Character> {
+//    return Array(string);
+//}
+//
+//print(convertToArray(str)); // ["a", "b", "c", "d"]
+
+// ========================================================= //
+
+//26. Написать функцию которая конвертирует строку в массив Character и добавляет индекс
+//"abcd" -> ["a0", "b1", "c2", "d3"]
+
+//var str = "abcd";
+//
+//func convertToArray(_ string: String) -> Array<String> {
+//    var result: Array<String> = [];
+//    
+//    for (index, item) in Array(string).enumerated() {
+//        result.append(String(item) + String(index));
+//    }
+//    
+//    return result;
+//}
+//
+//print(convertToArray(str)); // ["a0", "b1", "c2", "d3"]
+// ========================================================= //
+
+//27. Удалить первый и последний элемент строки
+//"place" -> "lac"
+
+//var str = "place";
+//
+//func removeFirstLast(_ string: String) -> String {
+//    var newArr = Array(string);
+//    newArr.removeFirst();
+//    newArr.removeLast();
+//    return String(newArr);
+//}
+//
+//print(removeFirstLast(str)); // lac
+
+// ========================================================= //
+
+//28. Удалить элемент строки по-середине
+//"place" -> "plce"
+
+//var str = "place";
+
+//func removeCenter(_ string: String) -> String {
+//    var newArr = Array(string);
+//    newArr.remove(at: newArr.count/2);
+//    return String(newArr);
+//}
+//
+//print(removeCenter(str)); // plce
+
+// ========================================================= //
+
+//29. Суммировать четные числа
+//[4, 3, 1, 2, 5, 10, 6, 7, 9, 8]  -> 4 + 2 + 10 + 6 + 8 -> 30
+
+//var arr = [4, 3, 1, 2, 5, 10, 6, 7, 9, 8];
+//
+//func sumEvenNumbers(array: [Int]) -> Int {
+//    var result: Int = 0;
+//    
+//    for item in array {
+//        if (item % 2 == 0) {
+//            result = result + item;
+//        }
+//    }
+//    
+//    return result;
+//}
+//
+//print(sumEvenNumbers(array: arr)); // 30
+
+
+// ========================================================= //
+
+//30. Посчитать разницу между максимальным и минимальным
+//[23, 3, 19, 21, 16] -> 20 (23 - 3)
+//[1, 434, 555, 34, 112] -> 554 (555 - 1)
+//
+//var arr = [23, 3, 19, 21, 16];
+//var arr2 = [1, 434, 555, 34, 112];
+//
+//func differenceMaxMin(_ array: [Int]) -> Int {
+//    var maxNum: Int, minNum: Int;
+//    
+//    maxNum = array.max() ?? 0;
+//    minNum = array.min() ?? 0;
+//    
+//    return maxNum - minNum;
+//}
+//
+//print(differenceMaxMin(arr)); // 20
+//print(differenceMaxMin(arr2)); // 554
+
+// ========================================================= //
+
+//31.31. Дана последовательность, найти сколько пропущено между минимальным и максимальным элементом массива (contains)
+//[4,6,8] -> 2 (5, 6)
+//[1,2,3,4,6] -> 1 (5)
+//[1,2,3] -> 0 ()
+
+//var arr1 = [4, 6, 8];
+//var arr2 = [1, 2, 3, 4, 6];
+//var arr3 = [1, 2, 3];
+//
+//func consecutive(_ array: [Int]) -> Int {
+//    var maxNum = array.max() ?? 0;
+//    var minNum = array.min() ?? 0;
+//    var emptyNumCounter: Int = 0;
+//    
+//    for item in minNum...maxNum {
+//        if (!array.contains(item)) {
+//            emptyNumCounter += 1;
+//        }
+//    }
+//    
+//    return emptyNumCounter;
+//    
+//}
+//
+//print(consecutive(arr1)); // 2
+//print(consecutive(arr2)); // 1
+//print(consecutive(arr3)); // 0
+
+// ========================================================= //
+
+//32. Вытащить максимальные элементы из массива в заданном количестве
+//largest(3, [7,6,5,4,3,2,1]) -> [7,6,5]
+
+//var arr = [7, 6, 5, 4, 3, 2, 1];
+//var arr2 = [99,8,44,56,12,3,2];
+//
+//func largest(count: Int, array: [Int]) -> [Int] {
+//    var result: [Int] = [];
+//    var counter = 0;
+//    
+//    for item in array.sorted().enumerated().reversed() {
+//        result.append(item.element);
+//        counter += 1;
+//        
+//        if (counter == count) {
+//            return result;
+//        }
+//    }
+//    
+//    return [];
+//    
+//}
+//
+//print(largest(count: 3, array: arr));
+//print(largest(count: 4, array: arr2));
+
+// ========================================================= //
+
+//33. По какоми индексу вставить число в отсортированном массиве
+//([1, 2, 3, 4, 7], 5) -> 4
+//([1, 2, 3, 4, 7], 0) -> 0
+//([1, 1, 2, 2, 2], 2) -> 2
+
+//var arr1 = [1, 2, 3, 4, 7];
+//
+//func keepOrder(array: [Int], element: Int) -> Int {
+//    var result: Int = 0;
+//    
+//    for (index, item) in array.enumerated() {
+//        if (item > element) {
+//            result = index;
+//            break;
+//        } else if (item == element) {
+//            result = index + 1;
+//        }
+//    }
+//    
+//    return result;
+//}
+//
+//print(keepOrder(array: arr1, element: 5)); // 4
+//print(keepOrder(array: arr1, element: 0)); // 0
+//print(keepOrder(array: arr1, element: 2)); // 2
+
+// ========================================================= //
+
+//34. Порезать строку
+//trim("He", 1) -> "H..."
+
+//func trim(_ string: String, _ num: Int) -> String {
+//    return String(Array(string).prefix(num));
+//}
+//
+//print(trim("He", 1)); // "H"
+//print(trim("Hello", 3)); // "Hel"
+
+// ========================================================= //
+
+//35. Каждый элемент поделить на порядок в массиве и суммировать
+//[3,4,6] -> ( 3 / 1 ) + ( 4 / 2 ) + ( 6 / 3 ) = 7
+
+//func add(array: [Int]) -> Int {
+//    var result: Int = 0;
+//    
+//    for (index, item) in array.enumerated() {
+//        result = (item / (index + 1)) + result;
+//    }
+//    
+//    return result;
+//}
+//
+//print(add(array: [3,4,6])); // 7
+//print(add(array: [1,2,3])); // 3
+
+// ================================================= //
+
+//36. Найти минимальный элемент в массиве и удалить его из массива
+//[1,2,3,4,5]  -> [2,3,4,5]
+//[5,3,2,1,4]  -> [5,3,2,4]
+//[2,1,2,1,2,1] -> [2,2,2]
+//[0,1,0,1,0]  -> [1,1]
+
+//func removeSmallest(_ array: [Int]) -> [Int] {
+//    var resultArray: [Int] = [];
+//    var minNum = array.min() ?? 0;
+//    
+//    for item in array {
+//        if (item != minNum) {
+//            resultArray.append(item);
+//        }
+//    }
+//    
+//    return resultArray;
+//}
+//
+//print(removeSmallest([1,2,3,4,5])); // [2,3,4,5]
+//print(removeSmallest([5,3,2,1,4])); // [5,3,2,4]
+//print(removeSmallest([2,1,2,1,2,1])); // [2,2,2]
+//print(removeSmallest([0,1,0,1,0])); // [1,1]
+
+
+// ================================================= //
+
+//37. Один массив прибавить ко второму массиву - все способы
+//[1, 2, 3] + [4, 5] -> [1, 2, 3, 4, 5]
+
+// 1.
+//func sumArrays(lhs: [Int], rhs: [Int]) -> [Int] {
+//    return lhs + rhs
+//}
+// 2.
+//func sumArrays(lhs: [Int], rhs: [Int]) -> [Int] {
+//    var result = lhs;
+//    result.append(contentsOf: rhs)
+//    return result;
+//}
+// 3.
+//func sumArrays(lhs: [Int], rhs: [Int]) -> [Int] {
+//    var result = lhs;
+//    result.insert(contentsOf: rhs, at: lhs.count - 1 );
+//    return result;
+//}
+
+
+//print(sumArrays(lhs: [1,2,3], rhs: [4,5]))
+
+// ================================================= //
+
+//38. Суммировать каждый элемент массива по индексам
+//[1, 2, 3] + [4, 5] -> [1+4, 2+5, 3+0] -> [5, 7, 3]
+
+//func sumElementsByIndex(lhs: [Int], rhs: [Int]) -> [Int] {
+//    var maxCountArray = max(lhs.count, rhs.count) - 1;
+//    var result: [Int] = [];
+//    
+//    for index in 0...maxCountArray {
+//        var leftNumber = lhs.indices.contains(index) ? lhs[index] : 0;
+//        var rightNumber = rhs.indices.contains(index) ? rhs[index] : 0;
+//        result.append(leftNumber + rightNumber);
+//    }
+//    
+//    return result;
+//}
+//
+//print(sumElementsByIndex(lhs: [1, 2, 3], rhs: [4, 5])); // [5, 7, 3]
+
+// ================================================= //
+
+//39. Вернуть первый непоследовательный элемент и его индекс
+//[1, 2, 3, 4, 5, 7, 8, 9] -> (7, 5)
+
+//func firstNonConsequitive(array: [Int]) -> (Int, Int) {
+//    var result = (0, 0);
+//    
+//    for (index, item) in array.enumerated() {
+//        var nextIndex = index + 1
+//        
+//        if (array[nextIndex] != item + 1) {
+//            result = (array[nextIndex], nextIndex);
+//            break;
+//        }
+//    }
+//    
+//    return result;
+//}
+//
+//print(firstNonConsequitive(array: [1, 2, 3, 4, 5, 7, 8, 9])); // (7, 5)
+
+// ================================================= //
+
+//40. Проверить что массив монотонно убывающий
+//[10, 9, 8, 7, 6, 6, 5] -> true
+//[10, 9, 8, 8, 7, 9] -> false
+//[10,10,10] -> true
+
+//func isIncreasing(array: [Int]) -> Bool {
     
-    for (index, item) in array.enumerated() {
-        result.append(item * index);
-    }
-    
-    return result;
-        
-}
+//    for (index, item) in array.enumerated() {
+//        if (index < array.count - 1 && array[index + 1] > item) {
+//            return false;
+//        }
+//    }
+//    
+//    return true
+//}
+//
+//print(isIncreasing(array: [10, 9, 8, 7, 6, 6, 5])); // true
+//print(isIncreasing(array: [10, 9, 8, 8, 7, 9] )); // false
+//print(isIncreasing(array: [10,10,10] )); // true
 
-print(multiplyIndex(arr)); // [0, 2, 6, 12]
+// ================================================= //
 
-// ========================================================= //
-// ========================================================= //
-// ========================================================= //
-// ========================================================= //
-// ========================================================= //
-// ========================================================= //
+//41. Написать функцию которая принимает массив чисел и проверяет монотонный он или нет
+//[1,3,6,8] → true
+//[6, 3, 2, 1] → true
+//[5,5] → true
+//[1, 2, 2, 5, 5, 7] → true
+//[1, 2, 3, 3, 3, 1] → false
+//[5, 4, 3, 2, 1, 2, 3] → false
+
+//func isMonotone(_ array: [Int]) -> Bool {
+//    var arrIsDecreasing: Bool = false;
+//    var arrIsIncreasing: Bool = false;
+//    
+//    if (array[0] > array[1]) {
+//        arrIsDecreasing = true
+//    } else if (array[0] < array[1]) {
+//        arrIsIncreasing = true
+//    }
+//    
+//    for (index, item) in array.enumerated() {
+//        var isNotEndLoop = index < array.count - 1
+//        if (isNotEndLoop) {
+//            var nextItem = array[index + 1]
+//            
+//            if (arrIsIncreasing && array[index] > nextItem){
+//                return false;
+//            }
+//            if (arrIsDecreasing && array[index] < nextItem) {
+//                return false
+//            }
+//        }
+//    }
+//    
+//    return true;
+//}
+//
+//print(isMonotone([1, 3, 6, 8])); // true
+//print(isMonotone([6, 3, 2, 1])); // true
+//print(isMonotone([5, 5])); // true
+//print(isMonotone([1, 2, 2, 5, 5, 7])); // true
+//print(isMonotone([1, 2, 3, 3, 3, 1])); // false
+//print(isMonotone([5, 4, 3, 2, 1, 2, 3])); // false
+
+// ================================================= //
+
+//42. Маскировать кредитную карту
+//"12345678" -> "****4678"
+//"1234" -> "1234"
+//"123456" -> "**3456"
+
+//func masked(string: String) -> String {
+//    let MIN_COUNT = 4;
+//    
+//    if (string.count <= MIN_COUNT) {
+//        return string;
+//    }
+//    
+//    var resultArr: [String] = [];
+//    
+//    for (index, item) in Array(string).reversed().enumerated() {
+//        if (index >= MIN_COUNT) {
+//            resultArr.append("*");
+//        } else {
+//            resultArr.append(String(item));
+//        }
+//    }
+//
+//    return String(resultArr.reversed().joined())
+//}
+//
+//print(masked(string: "12345678")); // ****5678
+//print(masked(string: "1234")); // 1234
+//print(masked(string: "123456")); // **3456
+//print(masked(string: "11")); // 11
+//print(masked(string: "0")); // 0
+
+// ================================================= //
+
+//43. Сконвертироват значение типа Any в тип данных Int
+
+//func someToInt(_ value: Any) -> Int {
+//
+//        if let value = value as? Int {
+//                return value
+//        }
+//        return 0
+//}
+//
+//print(someToInt("10")) //
+
+    // ????????
+// ================================================= //
+
+//44. Написать фукнцию суммирования всех элементов массива неопределенных элементов (использовать интерполяцию или type casting)
+//["1", 2, 3.5, Character(4)] -> 10.5
+
+//func sumOfValues(array: [Any]) -> Double {
+//    var sum: Double = 0.0
+//    
+//    for item in array {
+//        if let intItem = item as? Int {
+//            sum += Double(intItem)
+//        } else if let doubleItem = item as? Double {
+//            sum += Double(doubleItem)
+//        } else if let str = item as? String, let num = Double(str) {
+//            sum += num
+//        } else if let char = item as? Character, let num = Double(String(char)) {
+//            sum += num
+//        }
+//    }
+//    
+//    
+//    return sum
+//}
+//
+//print(sumOfValues(array: ["1", 2, 3.5, Character("4")])) // 10.5
+
+// ================================================= //
+
+//45. Удалить элементы по диапазону индексов (использовать метод removeSubrange(:))
+//[1, 2, 3, 4, 5, 6, 7], 1...3 -> [1, 5, 6, 7]
+
+//func removeByIndexRange(array: [Int], range: ClosedRange<Int>) -> [Int] {
+//    var result = array;
+//    result.removeSubrange(range)
+//    return result
+//}
+//
+//print(removeByIndexRange(array: [1, 2, 3, 4, 5, 6, 7], range: 1...3)); // [1, 5, 6, 7]
+
+// ================================================= //
+
+//46. Найти все непоследовательные элементы в массиве
+//[1, 2, 3, 4, 5, 7, 8, 9, 11] -> [7,11]
+
+//func findFirstNonConsecutive(array: [Int]) -> [Int] {
+//    var result: [Int] = [];
+//    
+//    for (index, item) in array.enumerated() {
+//        if (index + 1 < array.count) {
+//            if (array[index] + 1 != array[index + 1]) {
+//                result.append(array[index + 1])
+//            }
+//        }
+//    }
+//    
+//    return result;
+//}
+//
+//print(findFirstNonConsecutive(array: [1, 2, 3, 4, 5, 7, 8, 9, 11])); // [7, 11]
+
+// ================================================= //
+
+//47. Дан массив цен , нужно найти самый дорогой продукт на котрый хватит хватил кеш
+//13, [3, 10, 300, 15, 3] -> 10
+
+//func mostExpensive(cash: Int, products: [Int]) -> Int {
+//    var result: Int = 0;
+//    
+//    for i in products {
+//        if (i >= result && i <= cash) {
+//            result = i;
+//        }
+//    }
+//    
+//    return result;
+//}
+//
+//print(mostExpensive(cash: 13, products: [3, 10, 300, 15, 3])) // 10;
+
+// ================================================= //
+
+//48. Дан массив нужно сгруппировать в массив другого вида
+//[1, 2, 2, 3, 3, 3] -> [[1], [2,2], [3, 3, 3]]
+
+//func groupElements(array: [Int]) -> [[Int]] {
+//    var result: [[Int]] = [];
+//    var newArr = array.sorted();
+//    var currentItem = 0;
+//    
+//    for (index, item) in newArr.enumerated() {
+//        if (currentItem != item) {
+//            currentItem = item;
+//            result.append([]);
+//        }
+//        
+//        result[item - 1].append(item);
+//        print(result)
+//    }
+//    
+//    return result;
+//}
+//
+//print(groupElements(array: [1, 2, 2, 3, 3, 3])) // [[1], [2,2], [3, 3, 3]]
+
+// ================================================= //
+//49. Проверить что массив является горой
+//[1, 2, 3, 2, 1] -> true
+//[1, 2, 3, 4, 5] -> false
+
+//func isValidMountain(array: [Int]) -> Bool {
+//    if (array.count < 3) { return false }
+//    
+//    var leftIndex = 0
+//    var rightIndex = array.count - 1
+//    
+//    while leftIndex < rightIndex {
+//        if ( array[leftIndex] !=  array[rightIndex]) {
+//            return false
+//        }
+//        
+//        leftIndex += 1
+//        rightIndex -= 1
+//    }
+//
+//    return true
+//    
+//}
+
+//print(isValidMountain(array: [1, 2, 3, 2, 1])) // true
+//print(isValidMountain(array: [1, 2, 3, 4, 5])) // false
+//print(isValidMountain(array: [3, 4, 5, 6, 5, 4, 3])) // true
+//print(isValidMountain(array: [0, 0, 1, 10, 0, 5])) // false
+//print(isValidMountain(array: [0,1,0])) // true
+//print(isValidMountain(array: [0,1])) // false
+
+// ================================================= //
+
+//50. Дано число N нужно вывести массив с O до N и от N до 0
+//4 -> [0, 1, 2, 3, 4, 3, 2, 1, 0]
+
+//func thereAndBack(_ num: Int) -> [Int] {
+//    var result: [Int] = [];
+//    
+//    for item in 0...num {
+//        if (item <= num) { result.append(item) }
+//    }
+//    
+//    for item in (0...num - 1).reversed() {
+//        if (item >= 0) { result.append(item) }
+//    }
+//    
+//    return result;
+//}
+//
+//print(thereAndBack(4)); // [0, 1, 2, 3, 4, 3, 2, 1, 0]
+
+// ================================================= //
 
