@@ -4,19 +4,19 @@ import Foundation
 // 1. Посчитать сумму положительных чисел в массиве
 //[1,-4,7,12] -> 1 + 7 + 12 = 20
 
-func sumOfPositives(_ array: [Int]) -> Int {
-    var result = 0;
-
-    for item in array {
-        if (item >= 0) {
-            result += item
-        }
-    }
-    
-    return result;
-}
-
-print(sumOfPositives([1,-4,7,12])); // 20
+//func sumOfPositives(_ array: [Int]) -> Int {
+//    var result = 0
+//
+//    for item in array {
+//        if (item >= 0) {
+//            result += item
+//        }
+//    }
+//    
+//    return result;
+//}
+//
+//print(sumOfPositives([1,-4,7,12])); // 20
 
 // ========================================================= //
 
@@ -308,17 +308,29 @@ print(sumOfPositives([1,-4,7,12])); // 20
 
 //var arr = [0, 1]
 //var arr2 = [1,2,3,4,5]
-//
+////
 //func noOdds(array: [Int]) -> [Int] {
-//    var result : [Int] = [];
+//    var result : [Int] = []
+////    
+////    for item in array {
+////        if (item % 2 == 0) {
+////            result.append(item)
+////        }
+////    }
 //    
-//    for item in array {
-//        if (item % 2 == 0) {
+//    var index = 0
+//    
+//    while index < array.count {
+//        
+//        let item = array[index]
+//        if item % 2 == 0 {
 //            result.append(item)
 //        }
+//        
+//        index += 1
 //    }
 //    
-//    return result;
+//    return result
 //}
 //
 //print(noOdds(array: arr)) // [0]
@@ -346,15 +358,12 @@ print(sumOfPositives([1,-4,7,12])); // 20
 //var arr = [ [ 1, 2, 3, 4, 5 ], [ 5, 6, 7, 8, 9 ], [ 20, 21, 34, 56, 100]]
 //
 //func sumOfMinimums(_ array: [[Int]]) -> Int {
-//    var maxNumbers: [Int] = [];
+//    //var maxNumbers: [Int] = [];
 //    var sum = 0;
 //    
 //    for i in array {
-//        maxNumbers.append(i.min() ?? 0)
-//    }
-//    
-//    for i in maxNumbers {
-//        sum += i
+//        //maxNumbers.append(i.min() ?? 0)
+//        sum += i.min() ?? 0
 //    }
 //    
 //    return sum;
@@ -655,7 +664,7 @@ print(sumOfPositives([1,-4,7,12])); // 20
 //    var result: [Int] = [];
 //    var counter = 0;
 //    
-//    for item in array.sorted().enumerated().reversed() {
+    //for item in array.sorted(by: >) {
 //        result.append(item.element);
 //        counter += 1;
 //        
@@ -785,20 +794,23 @@ print(sumOfPositives([1,-4,7,12])); // 20
 
 //38. Суммировать каждый элемент массива по индексам
 //[1, 2, 3] + [4, 5] -> [1+4, 2+5, 3+0] -> [5, 7, 3]
-
+//
 //func sumElementsByIndex(lhs: [Int], rhs: [Int]) -> [Int] {
-//    var maxCountArray = max(lhs.count, rhs.count) - 1;
 //    var result: [Int] = [];
+//    var index = 0
 //    
-//    for index in 0...maxCountArray {
-//        var leftNumber = lhs.indices.contains(index) ? lhs[index] : 0;
-//        var rightNumber = rhs.indices.contains(index) ? rhs[index] : 0;
-//        result.append(leftNumber + rightNumber);
+//    while index < max(lhs.count, rhs.count) {
+//        
+//        let item1 = index < lhs.count ? lhs[index] : 0
+//        let item2 = index < rhs.count ? rhs[index] : 0
+//        
+//        result.append(item1 + item2)
+//        index += 1
 //    }
 //    
 //    return result;
 //}
-//
+////
 //print(sumElementsByIndex(lhs: [1, 2, 3], rhs: [4, 5])); // [5, 7, 3]
 
 // ================================================= //
@@ -831,14 +843,18 @@ print(sumOfPositives([1,-4,7,12])); // 20
 //[10,10,10] -> true
 
 //func isIncreasing(array: [Int]) -> Bool {
-    
+//
 //    for (index, item) in array.enumerated() {
-//        if (index < array.count - 1 && array[index + 1] > item) {
-//            return false;
+//        if index == 0 {
+//            continue
+//        }
+//        if array[index - 1] < array[index] {
+//            return false
 //        }
 //    }
 //    
 //    return true
+//    
 //}
 //
 //print(isIncreasing(array: [10, 9, 8, 7, 6, 6, 5])); // true
@@ -922,6 +938,11 @@ print(sumOfPositives([1,-4,7,12])); // 20
 //print(masked(string: "11")); // 11
 //print(masked(string: "0")); // 0
 
+
+// решение, которое мне случайно попалось на кодварс
+//func maskify(_ string:String) -> String {
+//  string.enumerated().map { $0 < string.count - 4 ? "#" : "\($1)"}.joined()
+//}
 // ================================================= //
 
 //43. Сконвертироват значение типа Any в тип данных Int
@@ -1022,23 +1043,30 @@ print(sumOfPositives([1,-4,7,12])); // 20
 //[1, 2, 2, 3, 3, 3] -> [[1], [2,2], [3, 3, 3]]
 
 //func groupElements(array: [Int]) -> [[Int]] {
-//    var result: [[Int]] = [];
-//    var newArr = array.sorted();
-//    var currentItem = 0;
+//    var result: [[Int]] = []
+//    var subArray: [Int] = []
 //    
-//    for (index, item) in newArr.enumerated() {
-//        if (currentItem != item) {
-//            currentItem = item;
-//            result.append([]);
+//    
+//    for (index, item) in array.enumerated() {
+//        if (index == 0) {
+//            subArray.append(item)
+//            continue
 //        }
-//        
-//        result[item - 1].append(item);
-//        print(result)
+//            
+//        if (array[index - 1] == array[index]) {
+//            subArray.append(item)
+//        } else {
+//            result.append(subArray)
+//            subArray = []
+//            subArray.append(item)
+//        }
 //    }
 //    
-//    return result;
+//    result.append(subArray)
+//    return result
+//    
 //}
-//
+////
 //print(groupElements(array: [1, 2, 2, 3, 3, 3])) // [[1], [2,2], [3, 3, 3]]
 
 // ================================================= //
