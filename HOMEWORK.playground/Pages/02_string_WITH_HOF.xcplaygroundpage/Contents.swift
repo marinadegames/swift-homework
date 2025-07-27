@@ -5,22 +5,10 @@ import Foundation
 //6, "I"     -> "IIIIII"
 //5, "Hello" -> "HelloHelloHelloHelloHello"
 
-//func repeatChar(_ count: Int, word: String) -> String {
-//    var result: String = ""
-//    
-//    var index = 0;
-//    while index <= count {
-//        result = result + word
-//        index += 1
-//
-//        result = result + char
-//        index += 1
-//    }
-//    
-//    return result
-//}
-//
-
+func repeatChar(_ count: Int, word: String) -> String {
+    var result = Array(repeating: word, count: count).joined()
+    return " "
+}
 
 // ====================================================== //
 //3. Удалить пустые символы из строкик
