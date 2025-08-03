@@ -54,7 +54,7 @@ import Foundation
 //"Let's travel abroad shall we" → 2
 
 //func countMinWord(_ string: String) -> Int {
-//    return string.components(separatedBy: " ").min{$0 > $1}?.count ?? 0
+//    return string.components(separatedBy: " ").min{$0.count > $1.count}?.count ?? 0
 //}
 //
 //print(countMinWord("Let's travel abroad shall we" )) // 2
@@ -266,6 +266,8 @@ import Foundation
 //"abcba", "a" -> 0
 //"okko", "q" -> -1
 
+
+
 //func secondSymbolIndex(word: String, symbol: Character) -> Int {
 //    var newArr = Array(word)
 //    var index = 0
@@ -396,21 +398,33 @@ import Foundation
 
 // ====================================================== //
 //21. Есть два массива строк нужно склеить их
-//["a", "b", "c"], ["1", "2", "3"] -> ["a1", "b1", "c1"]
+//["a", "b", "c", "d"], ["1", "2", "3"] -> ["a1", "b2", "c3", "d"]
 
 //func merge(lhs: [String], rhs: [String]) -> [String] {
-//    var result: [String] = []
+//    let biggerArray = lhs.count > rhs.count ? lhs : rhs
+//    var newArr: [String] = []
 //    var index = 0
 //    
-//    while index < lhs.count {
-//        result.append(lhs[index] + rhs[index])
+//    while index < biggerArray.count {
+//        var newStr: String = ""
+//        
+//        if (index >= rhs.count) {
+//            newStr = "\(lhs[index])"
+//        } else if (index >= lhs.count) {
+//            newStr = "\(lhs[index])"
+//        } else {
+//            newStr = "\(lhs[index])\(rhs[index])"
+//
+//        }
+//        
+//        newArr.append(newStr)
 //        index += 1
 //    }
-//
-//    return result
+//    
+//    return newArr
 //}
-//
-//print(merge(lhs: ["a", "b", "c"], rhs: ["1", "2", "3"])) // ["a1", "b2", "c3"]
+////
+//print(merge(lhs: ["a", "b", "c", "d"], rhs: ["1", "2", "3", "4", "5"]))
 
 // ====================================================== //
 //22. Отсортировать по последнему символу строки

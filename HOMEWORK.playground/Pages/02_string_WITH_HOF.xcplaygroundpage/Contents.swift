@@ -5,10 +5,11 @@ import Foundation
 //6, "I"     -> "IIIIII"
 //5, "Hello" -> "HelloHelloHelloHelloHello"
 
-func repeatChar(_ count: Int, word: String) -> String {
-    var result = Array(repeating: word, count: count).joined()
-    return " "
-}
+//func repeatChar(_ count: Int, word: String) -> String {
+//    return Array(repeating: word, count: count).joined()
+//}
+//print(repeatChar(6, word: "I"))
+//print(repeatChar(5, word: "Hello"))
 
 // ====================================================== //
 //3. Удалить пустые символы из строкик
@@ -16,31 +17,17 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"8aaaaa dddd r     " -> "8aaaaaddddr"
 //
 //func removeSpaces(string: String) -> String {
-//    var newArr = Array(string)
-//    var result: String = ""
-//    var index = 0
-//    
-//    while index <= newArr.count - 1 {
-//        var currentItem = String(newArr[index])
-//        
-//        if (currentItem != " ") {
-//            result = result + currentItem
-//        }
-//        index += 1
-//    }
-//    
-//    return String(result)
+//    return Array(string).compactMap{String($0)}.filter{$0 != " "}.joined()
 //}
-//
 //
 //print(removeSpaces(string: "8 j 8   mBliB8g  imjB8B8  jl  B"))
 //print(removeSpaces(string: "8aaaaa dddd r     "))
 
 // ====================================================== //
 
-//4. Вывести количество символов самого маленького слова в предложении
-//"Let's travel abroad shall we" → 2
-
+////4. Вывести количество символов самого маленького слова в предложении
+////"Let's travel abroad shall we" → 2
+//
 //func countMinWord(_ string: String) -> Int {
 //    return string.components(separatedBy: " ").min{$0 > $1}?.count ?? 0
 //}
@@ -75,19 +62,9 @@ func repeatChar(_ count: Int, word: String) -> String {
 //["abc","abcabc","cbacba","bca"], "abc" -> 2
 
 //func prefixCount(_ words: [String], _ pref: String) -> Int {
-//    
-//    var index = 0
-//    var prefixCount = 0
-//    
-//    while index < words.count - 1 {
-//        if (words[index].prefix(pref.count) == pref){
-//            prefixCount += 1
-//        }
-//        index += 1
-//    }
-//    
-//    return prefixCount
-//    
+//    var counter = 0
+//    words.forEach{ if ($0.contains("abc")) {counter += 1} }
+//    return counter
 //}
 //
 //print(prefixCount(["abc","abcabc","cbacba","bca"], "abc")) // 2
@@ -97,14 +74,11 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"AppLE" -> [0,3,4]
 
 //func findCapitals(_ string: String) -> [Int] {
-//    var newArr = Array(string)
 //    var result: [Int] = []
-//    var index: Int = 0
+//    var index = 0
 //    
-//    while index < newArr.count {
-//        if (newArr[index].isUppercase) {
-//            result.append(index)
-//        }
+//    string.forEach{ item in
+//        if (item.isUppercase){result.append(index)}
 //        index += 1
 //    }
 //    
@@ -133,20 +107,18 @@ func repeatChar(_ count: Int, word: String) -> String {
 
 //func countVowels(_ str: String) -> Int {
 //    let vowelLetters: [Character] = ["a", "e", "i", "o", "u"]
-//    var newArr = Array(str)
-//    var index: Int = 0
-//    var vowelLettersCount: Int = 0
+//    let newArr = Array(str)
+//    var counter = 0
 //    
-//    while index < newArr.count {
-//        if (vowelLetters.contains(newArr[index])) {
-//            vowelLettersCount += 1
+//    for (index, item1 )in newArr.enumerated() {
+//        for (index2, item2) in vowelLetters.enumerated() {
+//            if (item1 == item2) { counter += 1}
 //        }
-//        index += 1
 //    }
 //    
-//    return vowelLettersCount
+//    return counter
 //}
-//
+////
 //print(countVowels("abracadabra")) // 5
 //print(countVowels("pear tree")) // 4
 // ====================================================== //
@@ -157,21 +129,16 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"45" -> "45"
 
 //func maskify(string: String) -> String {
-//    let MAX_NUMBERS = 4
+//    let MIN_NUMBERS = 4
 //    
-//    if (string.count <= MAX_NUMBERS) {
+//    if (string.count <= MIN_NUMBERS) {
 //        return string
 //    }
 //    
-//    var lastLetters = Array(string.suffix(MAX_NUMBERS))
-//    var index = 0
+//    let leftString = string.prefix(string.count - MIN_NUMBERS).map{_ in "*"}.joined()
+//    let rightString = string.suffix(MIN_NUMBERS)
 //    
-//    while index < lastLetters.count {
-//        lastLetters[index] = "*"
-//        index += 1
-//    }
-//    
-//    return string.dropLast(MAX_NUMBERS) + String(lastLetters)
+//    return leftString + rightString
 //}
 //
 //print(maskify(string: "4556364607935616"))
@@ -224,22 +191,9 @@ func repeatChar(_ count: Int, word: String) -> String {
 //["apple","rottenBanana","apple"] -> ["apple","banana","apple"]
 
 //func removeRotten(array: [String]) -> [String] {
-//    var copyArr = array
 //    var targetWord = "rotten"
-//    var index = 0
+//    var copyArr = array.map{$0.replacingOccurrences(of: targetWord, with: "").lowercased()}
 //    
-//    while index < copyArr.count {
-//        var currentItem = copyArr[index]
-//        
-//        if (currentItem.contains(targetWord)) {
-//            if let range = currentItem.range(of: targetWord) {
-//                currentItem.removeSubrange(range)
-//                copyArr[index] = currentItem.lowercased()
-//            }
-//           
-//        }
-//        index += 1
-//    }
 //    
 //    return copyArr
 //}
@@ -255,17 +209,8 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"okko", "q" -> -1
 
 //func secondSymbolIndex(word: String, symbol: Character) -> Int {
-//    var newArr = Array(word)
-//    var index = 0
-//    
-//    while index < newArr.count {
-//        if (newArr[index] == symbol) {
-//            return index
-//        }
-//        index += 1
-//    }
-//    
-//    return -1
+//    var result = Array(word).firstIndex(of: symbol) ?? -1
+//    return result
 //}
 //
 //print(secondSymbolIndex(word: "Hello", symbol: "l"))
@@ -279,20 +224,16 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"okko", "q" -> -1
 
 //func secondSymbolIndex(word: String, symbol: Character) -> Int {
-//    var newArr = Array(word)
-//    var counter = 0
-//    var index = 0
+//    var array = Array(word)
+//    var index = array.firstIndex(of: symbol) ?? -1
 //    
-//    while index < newArr.count {
-//        var currentItem = newArr[index]
-//        if (currentItem == symbol) {
-//            counter += 1
-//            if (counter == 2) { return index }
-//        }
-//        index += 1
-//    }
-//    return -1
+//    if (index == -1) { return -1 }
+//    
+//    return array[index+1..<array.count].firstIndex(where: {$0 == symbol}) ?? -1
+//
 //}
+//
+////array[0...3]
 //
 //print(secondSymbolIndex(word: "Hello", symbol: "l")) // 3
 //print(secondSymbolIndex(word: "abcba", symbol: "a")) // 4
@@ -333,16 +274,8 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"double  spaces"      -> "elbuod  secaps"
 
 //func reverseWords(string: String) -> String {
-//    var newArr = string.components(separatedBy: " ");
-//    var result: [String] = []
-//    var index = 0
-//    
-//    while index < newArr.count {
-//        result.append(String(newArr[index].reversed()))
-//        index += 1
-//    }
 //
-//    return result.joined(separator: " ")
+//    return String(string.components(separatedBy: " ").map{$0.reversed()}.joined(separator: " "))
 //}
 //
 //print(reverseWords(string: "This is an example!"))
@@ -363,19 +296,8 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"acb" -> "bca"
 //"aabacbaa" -> "bbabcabb"
 
-
 //func switchAtoB(_ string: String) -> String {
-//    var newArr = Array(string)
-//    var result: [String] = []
-//    var index = 0
-//    
-//    while index < newArr.count {
-//        var currentItem = newArr[index]
-//        result.append(currentItem == "a" ? "b" : "a")
-//        index += 1
-//    }
-//    
-//    return result.joined()
+//    return String(Array(string).map{$0 == "a" ? "b" : "a"}.joined())
 //}
 //
 //print(switchAtoB("acb"))
@@ -422,22 +344,11 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"102269" -> "12222666666999999999"
 
 //func digitsExplode(string: String) -> String {
-//    var newArr = Array(string)
-//    print(newArr)
-//    var result: [String] = []
-//    var index = 0
-//    
-//    while index < newArr.count {
-//        var newNum = String(newArr[index])
-//        var newArr = Array(repeating: newNum, count: Int(newNum) ?? 0)
-//        result.append(newArr.joined())
-//        index += 1
-//    }
-//    
-//    
-//    return result.joined()
+//    return Array(string).map{
+//        return String(repeating: $0, count: Int(String($0)) ?? 0)
+//    }.joined()
 //}
-//
+////
 //print(digitsExplode(string: "312"))
 //print(digitsExplode(string: "102269"))
 
@@ -446,17 +357,9 @@ func repeatChar(_ count: Int, word: String) -> String {
 //"This Is A Test" -> "TIAT"
 
 //func makeStringofFirstCharacters(phrase: String) -> String {
-//    var newArr = phrase.components(separatedBy: " ")
-//    var result: [String] = []
-//    var index = 0
-//    
-//    while index < newArr.count {
-//        var newValue = String(newArr[index].first ?? " ")
-//        result.append(newValue)
-//        index += 1
-//    }
-//    
-//    return result.joined()
+//    var newArr = Array(phrase).compactMap{String($0)}.filter{$0.isUppercase ? $0 : ""}
+//    print(newArr.joined())
+//    return " "
 //}
 //
 //print(makeStringofFirstCharacters(phrase: "This Is A Test"))
