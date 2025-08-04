@@ -423,7 +423,185 @@ import Foundation
 //["token", "12345", "user_id", "45678", "expire_in": "7980554012"] ->
 //[token: 12345", user_id: 45678, expire_in: 7980554012]
 
-func arrayToDict(_ array: [String]) -> [String: String] {
-}
+//func arrayToDict(_ array: [String]) -> [String: String] {
+//    var newDict: [String: String] = [:]
+//    var index: Int = 0
+//    
+//    while index < array.count {
+//        newDict.updateValue(array[index + 1], forKey: array[index])
+//        index += 2
+//    }
+//    
+//    return newDict
+//}
+//
+//print(arrayToDict(["token", "12345", "user_id", "45678", "expire_in", "7980554012"]))
 
+// ================================================================ //
+//21. Конвертнуть строку с данными в словарь
+//"https:api.vk.com/authorize#token=12345&user_id=45678&expire_in=7890554012" ->
+//[token: 12345", user_id: 45678, expire_in: 7980554012]
+
+//func convert(url: String) -> [String: Int] {
+//    var arr = url.components(separatedBy: ["&", "#"]).filter{$0.contains("=")}
+//    var newDict: [String: Int] = [:]
+//    
+//    for item in arr {
+//        var newArr = item.components(separatedBy: "=");
+//        newDict.updateValue(Int(newArr[1]) ?? 0, forKey: newArr[0])
+//    }
+// 
+//    
+//    return newDict
+//}
+//
+//print(convert(url: "https:api.vk.com/authorize#token=12345&user_id=45678&expire_in=7890554012"))
+
+// ================================================================ //
+
+//22. Определить является ли слово изограммой (isogram) -
+//слово в котором нет повторяющихся букв, последовательных или непоследовательных
+//"Dermatoglyphics" -> true
+//"moose" -> false
+//"aba" -> false
+
+//func isIsogramm(_ string: String) -> Bool {
+//    var newDict: [String: Int] = [:]
+//    var strArr = Array(string)
+//    
+//    for item in Array(string) {
+//        newDict[String(item), default: 0] += 1
+//    }
+//    
+//    if newDict.contains(where: {$1 > 1}) {
+//        return false
+//    }
+//    
+//    return true
+//}
+//
+//print(isIsogramm("Dermatoglyphics"))
+//print(isIsogramm("moose"))
+//print(isIsogramm("aba"))
+
+
+// ================================================================ //
+
+//23. Скомбинировать словари в один
+//A = [ "a": 10, "b": 20, "c": 30 ]
+//B = [ "a": 3, "c": 6, "d": 3 ]
+//[A + B] -> [ "a": 13, "b": 20, "c": 36, "d": 3 ]
+
+//func combine(array: [Dictionary<String, Int>]) -> Dictionary<String, Int> {
+//    var newDict: [String: Int] = [:]
+//    
+//    for currDict in array {
+//        for (key, value) in currDict {
+//            newDict.updateValue(value, forKey: key)
+//        }
+//    }
+//    
+//    return newDict
+//}
+//
+//print(combine(array: [[ "a": 10, "b": 20, "c": 30 ], [ "a": 3, "c": 6, "d": 3 ]]))
+
+// ================================================================ //
+//24. Сгруппируем массив в словарь по четным и нечетным числам
+//[1, 2, 3, 4, 5, 6] -> [evens: [2, 4, 6], odds: [1, 3, 5]]
+
+//func groupByEvensAndOdds(arr: [Int]) -> [String: [Int]] {
+//    var newDict: [String: [Int]] = ["evens": [], "odds": []]
+//    
+//    for item in arr {
+//        newDict[item % 2 == 0 ? "evens" : "odds"]?.append(item)
+//    }
+//    
+//    return newDict
+//}
+//
+//print(groupByEvensAndOdds(arr: [1, 2, 3, 4, 5, 6]))
+// ================================================================ //
+//25. Турист может нести N кг вещей, нужно уложить в рюкзак от наиболее тяжелых с самым легким которые поместятся в рюкзак
+//10 кг -> [палатка, cпальный мешок, удочка, термос, салфетки, жвачка]
+
+let things: [String: Int] = [
+    "зажигалка": 20,
+    "компас": 100,
+    "фрукты": 500,
+    "рубашка": 300,
+    "термос": 1000,
+    "аптечка": 200,
+    "куртка": 600,
+    "бинокль": 400,
+    "удочка": 1200,
+    "салфетки": 40,
+    "бутерброды": 820,
+    "палатка": 5500,
+    "спальный мешок": 2250,
+    "жвачка": 10
+]
+
+//func choiceThings(weight: Int, things: [String: Int]) -> [String] {
+//    var sortedArr = things.sorted(by: {$0.value > $1.value})
+//    var maxMass = weight
+//    var result: [String] = []
+//    
+//    // проверка на самый тяжелый предмет, сможет ли его нести турист
+//    if (sortedArr[0].value > maxMass) {
+//        return ["ТУРИСТ НЕ МОЖЕТ ЧТО-ЛИБО НЕСТИ"]
+//    }
+//    
+//    for item in sortedArr {
+//        if (maxMass - item.value >= 0) {
+//            maxMass -= item.value
+//            result.append(item.key)
+//        }
+//    }
+//    
+//    return result
+//}
+//
+//print(choiceThings(weight: 10000, things: things))
+//print(choiceThings(weight: 6000, things: things))
+//print(choiceThings(weight: 5000, things: things))
+//print(choiceThings(weight: 5500, things: things))
+
+
+// ================================================================ //
+//26. В словаре хранятся данные студентов нужно вывести чтобы все адреса были в алфавитном порядке в формате имя_пользователя@домен
+
+//let emails: [String: [String]] = [
+//    "mgu.edu": ["andrei_serov", "alexander_pushkin", "elena_belova", "kirill_stepanov"],
+//    "gmail.com": ["alena.semyonova", "ivan.polekhin", "marina_abrabova"],
+//    "msu.edu": ["sergei.zharkov", "julia_lyubimova", "vitaliy.smirnoff"],
+//    "yandex.ru": ["ekaterina_ivanova", "glebova_nastya"],
+//    "harvard.edu": ["john.doe", "mark.zuckerberg", "helen_hunt"],
+//    "mail.ru": ["roman.kolosov", "ilya_gromov", "masha.yashkina"]
+//]
+
+//func sortEmails(emails: [String: [String]]) -> [String] {
+//    var newArr: [String] = []
+//    
+//    for (key, arr) in emails {
+//        for item in arr {
+//            newArr.append("\(item)@\(key)")
+//        }
+//    }
+//    
+//    return newArr
+//}
+
+//print(sortEmails(emails: emails))
+
+// ================================================================ //
+//27. Выведете самое менше повторяющееся слово
+//["hi", "hi", "hello"] -> hi
+
+//func littleWord(arr: [String]) -> String {
+//    return arr.sorted(by: {$0.count > $1.count}).last ?? "ERROR"
+//}
+//
+//print(littleWord(arr: ["hi", "hi", "hello"] ))
+// ================================================================ //
 // ================================================================ //
