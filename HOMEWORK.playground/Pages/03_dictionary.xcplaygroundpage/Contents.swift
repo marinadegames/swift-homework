@@ -276,7 +276,7 @@ import Foundation
 //    "Alex Nussbacher": "94101",
 //    "Darrell Silver": "11201",
 //]
-
+//
 //func userContacts(_ list: [[String]]) -> [String: String?] {
 //    var newDict: [String: String?] = [:]
 //    
@@ -288,7 +288,7 @@ import Foundation
 //    
 //    return newDict
 //}
-//
+////
 //print(userContacts([["Grae Drake", "98110"], ["Bethany Kok"], ["Alex Nussbacher", "94101"], ["Darrell Silver", "11201"]]))
 
 // ================================================================ //
@@ -403,16 +403,13 @@ import Foundation
 //    
 //    for item in array {
 //        newDict[item, default: 0] += 1
+//        
+//        if ((newDict[item, default: 0]) % 2 == 0){
+//            counter += 1
+//        }
 //    }
-//    
-//    for item in newDict.values {
-//        counter += item / 2
-//    }
-//    
-//    print(newDict)
-//    print(counter)
-//    
-//    return 123
+//
+//    return counter
 //}
 //
 //print(countCouples(array: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2]))
@@ -464,7 +461,7 @@ import Foundation
 //"Dermatoglyphics" -> true
 //"moose" -> false
 //"aba" -> false
-
+//
 //func isIsogramm(_ string: String) -> Bool {
 //    var newDict: [String: Int] = [:]
 //    var strArr = Array(string)
@@ -604,4 +601,98 @@ let things: [String: Int] = [
 //
 //print(littleWord(arr: ["hi", "hi", "hello"] ))
 // ================================================================ //
+
+// OTHER EXAMPLES
 // ================================================================ //
+//func majorityElement(_ nums: [Int]) -> Int {
+//        var dict: [Int: Int] = [:]
+//        let halfCount = nums.count / 2
+//    
+//       for item in nums {
+//           dict[item, default: 0] += 1
+//        
+//           if dict[item, default: 0] > halfCount  {
+//               return item
+//           }
+//       }
+//    
+//    return 0
+//   }
+//
+//print(majorityElement([3,2,3]))
+//print(majorityElement([2,2,1,1,1,2,2]))
+// ================================================================ //
+
+//func findErrorNums(_ nums: [Int]) -> [Int] {
+//    var dict : [Int: Int] = [:]
+//    var duplicate: Int = 0
+//    
+//    for item in nums {
+//        dict[item, default: 0] += 1
+//    }
+//
+//    for (key, value) in dict {
+//        if (value > 1) {
+//            duplicate = key
+//        }
+//    }
+//    
+//    let keys = dict.keys.sorted()
+//    let sum1 = keys.reduce(0, +)
+//    let sum2 = Array(keys[0]...keys[keys.count - 1]).reduce(0, +)
+//    let miss = sum2 - sum1 == 0 ? keys[keys.count - 1] + 1 : sum2 - sum1
+//    
+//    return [duplicate, miss]
+//}
+//
+//print(findErrorNums([1,2,2,4]))
+//print(findErrorNums([1,1]))
+
+// ================================================================ //
+//words = ["cat","bt","hat","tree"], chars = "atach"
+func countCharacters(_ words: [String], _ chars: String) -> Int {
+    var charsDict: [Character: Int] = [:]
+    var count = 0
+    for char in chars {
+        charsDict[char, default: 0] += 1
+    }
+    
+    let copyCharsDict = charsDict
+    
+    for word in words where word.count < chars.count {
+        var wordDict: [Character: Int] = [:]
+        
+        for char in word {
+            wordDict[char, default: 0] += 1
+        }
+  
+        func isContains(_ charsDict: [Character: Int], _ wordDict: [Character: Int]) -> Bool {
+            var charsDict = charsDict
+            
+            for (key, value) in wordDict {
+                charsDict[key, default: 0] -= value
+                
+                if charsDict[key, default: 0] < 0 {
+                    return false
+                }
+            }
+            return true
+            
+        }
+        
+        let check = isContains(charsDict, wordDict)
+        
+        if check {
+            count += word.count
+        }
+    }
+    
+    return count
+}
+
+print(countCharacters(["cat","bt","hat","tree"], "atach"))
+print(countCharacters(["hello","world","leetcode"], "welldonehoneyr"))
+print(countCharacters(["dyiclysmffuhibgfvapygkorkqllqlvokosagyelotobicwcmebnpznjbirzrzsrtzjxhsfpiwyfhzyonmuabtlwin","ndqeyhhcquplmznwslewjzuyfgklssvkqxmqjpwhrshycmvrb","ulrrbpspyudncdlbkxkrqpivfftrggemkpyjl","boygirdlggnh","xmqohbyqwagkjzpyawsydmdaattthmuvjbzwpyopyafphx","nulvimegcsiwvhwuiyednoxpugfeimnnyeoczuzxgxbqjvegcxeqnjbwnbvowastqhojepisusvsidhqmszbrnynkyop","hiefuovybkpgzygprmndrkyspoiyapdwkxebgsmodhzpx","juldqdzeskpffaoqcyyxiqqowsalqumddcufhouhrskozhlmobiwzxnhdkidr","lnnvsdcrvzfmrvurucrzlfyigcycffpiuoo","oxgaskztzroxuntiwlfyufddl","tfspedteabxatkaypitjfkhkkigdwdkctqbczcugripkgcyfezpuklfqfcsccboarbfbjfrkxp","qnagrpfzlyrouolqquytwnwnsqnmuzphne","eeilfdaookieawrrbvtnqfzcricvhpiv","sisvsjzyrbdsjcwwygdnxcjhzhsxhpceqz","yhouqhjevqxtecomahbwoptzlkyvjexhzcbccusbjjdgcfzlkoqwiwue","hwxxighzvceaplsycajkhynkhzkwkouszwaiuzqcleyflqrxgjsvlegvupzqijbornbfwpefhxekgpuvgiyeudhncv","cpwcjwgbcquirnsazumgjjcltitmeyfaudbnbqhflvecjsupjmgwfbjo","teyygdmmyadppuopvqdodaczob","qaeowuwqsqffvibrtxnjnzvzuuonrkwpysyxvkijemmpdmtnqxwekbpfzs","qqxpxpmemkldghbmbyxpkwgkaykaerhmwwjonrhcsubchs"], "usdruypficfbpfbivlrhutcgvyjenlxzeovdyjtgvvfdjzcmikjraspdfp"))
+// ================================================================ //
+// ================================================================ //
+
